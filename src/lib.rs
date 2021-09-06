@@ -43,3 +43,22 @@ pub extern "C" fn get_contract_value(
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::get_contract_value;
+    use crate::MarketType;
+    use std::ffi::CString;
+
+    #[test]
+    fn test_binance() {
+        let contract_value = {
+            let exchange = CString::new("binance").unwrap();
+            let pair = CString::new("BTC/USD").unwrap();
+
+            get_contract_value(exchange.as_ptr(), MarketType::InverseSwap, pair.as_ptr())
+        };
+
+        assert_eq!(contract_value, 100.0);
+    }
+}
