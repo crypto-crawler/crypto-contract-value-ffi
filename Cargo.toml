@@ -1,0 +1,18 @@
+[package]
+name = "crypto-contract-value-ffi"
+version = "0.0.1"
+authors = ["soulmachine <soulmachine@gmail.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+crypto-contract-value = "1.0.1"
+
+[build-dependencies]
+cbindgen = "0.16.0"
+
+[profile.release]
+lto = true
+codegen-units = 1
